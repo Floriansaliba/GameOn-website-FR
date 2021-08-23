@@ -1,12 +1,4 @@
-//Changer le nom de la classe de la barre de navigation sur version smartphone
-function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
+
 
 // DOM Elements
 // Arrière plan de la modale
@@ -33,7 +25,22 @@ function closeModal() {
 }
 closeBtn[0].addEventListener('click', closeModal);
 
-
+//Changer le nom de la classe de la barre de navigation sur version smartphone
+function editNav() {
+var x = document.getElementById("myTopnav");
+  if (modalbg.style.display === "block"){
+    x.className === "topnav"; 
+    return 0;
+  }
+  
+  else if(x.className === "topnav"){
+    x.className += " responsive";
+  } 
+  
+  else {
+    x.className = "topnav";
+  }
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////  validation du formulaire 
 
@@ -81,6 +88,8 @@ form.addEventListener("submit", (e)=>{
   error6.textContent="";
   error7.textContent="";
 
+  
+
   // FIRST NAME VALIDATION
  
   if(!first.value){
@@ -113,8 +122,6 @@ form.addEventListener("submit", (e)=>{
   }
 
   // BIRTHDAY DATE VALIDATION
-
-  console.log(birth.value)
 
   if(!birth.value){
       error4.textContent= "Veuillez entrer votre date de naissance";
@@ -159,7 +166,6 @@ form.addEventListener("submit", (e)=>{
   // DON'T APPLY THE PREVENT DEFAULT IF ALL PREVIOUS CONDITIONS ARE VALIDATED
 
   if(count===7){
-    console.log("formulaire envoyé")
    
   // Replace the submit button text
     const submitBtn = document.getElementsByClassName("btn-submit")[0]
@@ -191,10 +197,10 @@ form.addEventListener("submit", (e)=>{
 
   // Keep the height of the modal and ajust elements inside
     const content = document.getElementsByClassName("content")[0]
-    content.style.height = "734.750px"
-    confirm.style.height = "600px"
+    content.style.height = "605.750px"
+    confirm.style.height = "496px"
     confirm.style.textAlign = "center"
-    confirm.style.paddingTop = "300px"
+    confirm.style.paddingTop = "100px"
 
     
 
