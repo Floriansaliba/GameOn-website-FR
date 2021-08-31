@@ -179,15 +179,10 @@ form.addEventListener("submit", (e)=>{
 
 
   // BIRTHDAY DATE VALIDATION
-  const regexBirth = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
 
   if(!birth.value){
     createErrorMessage(tableErrors[5], formData[3])
 
-  }
-
-  else if(!birth.value.match(regexBirth)){
-    createErrorMessage(tableErrors[6], formData[3])
   }
 
   else{
