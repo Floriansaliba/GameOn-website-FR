@@ -59,28 +59,23 @@
             <form name="reserve" action="index.html" method="get" id="formula">
               <div class="formData">
                 <label>Prénom</label><br>
-                <input class="text-control" type="text" id="first" name="first" minlength="2"/><br>
-                <span class="error" id="error1"></span>
+                <input class="text-control" type="text" id="first" name="first"/>
               </div>
               <div class="formData">
                 <label>Nom</label><br>
-                <input class="text-control" type="text" id="last" name="last" minlength="2"/><br>
-                <span class="error" id="error2"></span>
+                <input class="text-control" type="text" id="last" name="last"/><br>
               </div>
               <div class="formData">
                 <label>E-mail</label><br>
-                <input class="text-control" type="email" id="email" name="email"/><br>
-                <span class="error" id="error3"></span>
+                <input class="text-control" type="text" id="email" name="email"/><br>
               </div>
               <div class="formData">
                 <label>Date de naissance</label><br>
-                <input class="text-control" type="date" id="birthdate" name="birthdate"/><br>
-                <span class="error" id="error4"></span>
+                <input class="text-control" id="birthdate" name="birthdate"/><br>
               </div>
               <div class="formData">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99"><br>
-                <span class="error" id="error5"></span>
               </div>
               <p class="text-label">Quelles villes ?</p>
               <div class="formData">
@@ -108,7 +103,6 @@
                 <label class="checkbox-label" for="location6">
                   <span class="checkbox-icon"></span>Portland
                 </label><br>
-                <span class="error" id="error6"></span>
               </div>
 
               <div class="formData">
@@ -116,21 +110,35 @@
                 <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span>J'ai lu et accepté les conditions d'utilisation.
                 </label><br>
-                <span class="error" id="error7"></span>
+              </div>
+              <div class="formData">
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>Je souhaite être prévenu des prochains évènements.
                 </label>
                 <br>
               </div>
+              
               <input class="btn-submit" id="send-formula" type="submit" value="C'est parti"/>
             </form>
           </div>
         </div>
       </div>
           <!-- CONFIRMATION SUBMITED -->
-    <div class="container-confirmation">
-    </div>
+        <div class="bground2">
+          <div id="container-confirmation-submit">
+            <div id="submitted-form">
+              <span class="close-confirmation"></span>
+              <p class="confirmation-message">
+                Merci !
+                <br>
+                Votre réservation a été reçue.
+              </p>
+              <button id="close-btn-confirmation"> Fermer
+              </button>
+            </div>
+          </div>
+        </div>
     </main>
     <footer>
       <p class="copyrights">

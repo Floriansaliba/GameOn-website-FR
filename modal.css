@@ -611,16 +611,72 @@ footer {
 
 
 /* Style de l'écran de confirmation  */ 
-.container-confirmation{
-  display: none;
-  background-color: white;
-  width: 100vw;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 10;
+#container-confirmation-submit{
+  margin: 60px auto 0px;
+  width: 100%;
+  max-width: 500px;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  background: #232323;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
 }
+
+#close-btn-confirmation{
+  background: #fe142f;
+  display: block;
+  margin: 0 auto 30px;
+  border-radius: 7px;
+  font-size: 1rem;
+  padding: 5px 25px;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+}
+
+.confirmation-message{
+  text-align: center;
+  margin: 200px auto 200px;
+}
+
+.bground2
+  {
+    display: none;
+    position: fixed;
+    z-index: 4;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: white;
+  }
+
+  .close-confirmation {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 32px;
+    height: 32px;
+    opacity: 1;
+    cursor: pointer;
+    transform: scale(0.7);
+  }
+  .close-confirmation:before,
+  .close-confirmation:after {
+    position: absolute;
+    left: 15px;
+    content: " ";
+    height: 33px;
+    width: 3px;
+    background-color: #fff;
+  }
+  .close-confirmation:before {
+    transform: rotate(45deg);
+  }
+  .close-confirmation:after {
+    transform: rotate(-45deg);
+  }
 

@@ -1,5 +1,3 @@
-
-
 // DOM Elements
 // Arrière plan de la modale
 const modalbg = document.querySelector(".bground");
@@ -9,6 +7,7 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 // Bouton de fermeture de la modale
 const closeBtn = document.getElementsByClassName('close');
+
 
 
 // launch modal event
@@ -42,17 +41,12 @@ var x = document.getElementById("myTopnav");
   }
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////  validation du formulaire 
+///////////////////////////////////////////////////////////////  validation du formulaire 
 
 //DOM elements
-// span "error"
-const error1 = document.getElementById("error1");
-const error2 = document.getElementById("error2");
-const error3 = document.getElementById("error3");
-const error4 = document.getElementById("error4");
-const error5 = document.getElementById("error5");
-const error6 = document.getElementById("error6");
-const error7 = document.getElementById("error7");
+
+//Modal form
+const form = document.querySelector("#formula");
 
 // formula inputs
 const first = document.getElementById("first");
@@ -68,77 +62,143 @@ const portland = document.getElementById("location5");
 const conditions = document.getElementById("checkbox1");
 const informed = document.getElementById("checkbox2");
 const send = document.getElementById("send-formula");
+const submitBtn = document.getElementsByClassName("btn-submit")[0]
+
+// Table of error message
+const tableErrors =[
+  "Veuillez entrer votre Prénom",
+  "Veuillez entrer au minimum deux caractères",
+  "Veuillez entrer votre nom",
+  "Veuillez entrer votre e-mail",
+  "Veuillez entrer un e-mail valide",
+  "Veuillez entrer votre date de naissance",
+  "Veuillez entrer une date de naissance valide : jj / mm / aaaa",
+  "Veuillez entrer un nombre",
+  "Veuillez sélèctionner une ville",
+  "Veuillez accepter les conditions d'utilisation"
+]
 
 
+// Inject span error into the form 
+
+function createErrorMessage(errorMessage, parentNode){
+  let spanError = document.createElement("span")
+  spanError.classList.add("error")
+  spanError.textContent = errorMessage
+  parentNode.appendChild(spanError)
+}
+
+// Delete Error Messages function
+
+function clearErrorMessages(parentNode){
+  let spans = parentNode.getElementsByClassName("error")
+  if (spans){
+    for(let i=0; i< spans.length; i++){
+      parentNode.removeChild(spans[i]);
+    }
+  }
+  else{
+    console.log ("validé")
+  }
+
+}
+
+
+
+
+// ELEMENTS OF VALIDATION MESSAGE BLOCk
+const validation = document.getElementsByClassName("bground2")[0]
+const closeConfirmation = document.getElementById("close-btn-confirmation")
+const spanConfirmation = document.getElementsByClassName("close-confirmation")
 
 // EVENT VALIDATION FORM 
 
-const form = document.querySelector("#formula")
+
 form.addEventListener("submit", (e)=>{
   e.preventDefault()
   let count =0; 
 
-  // CLEAR ALL ERROR MESSAGES
-
-  error1.textContent="";
-  error2.textContent="";
-  error3.textContent="";
-  error4.textContent="";
-  error5.textContent="";
-  error6.textContent="";
-  error7.textContent="";
-
-  
+  // Clean all error Messages
+ for (let i=0; i<formData.length; i++){
+  clearErrorMessages(formData[i])
+ }
 
   // FIRST NAME VALIDATION
  
   if(!first.value){
-    error1.textContent= "Veuillez entrer votre prénom";
+    createErrorMessage(tableErrors[0], formData[0])
   }
 
-  else{
-    count++;
+  else if(first.value.length < 2){
+    createErrorMessage(tableErrors[1], formData[0])
   }
+
+  else {
+    clearErrorMessages(formData[0])
+    count ++;
+  }
+
   
 
    // LAST NAME VALIDATION
 
   if(!last.value){
-    error2.textContent= "Veuillez entre votre nom";
+    createErrorMessage(tableErrors[2], formData[1])
+  }
+
+  else if(last.value.length < 2){
+    createErrorMessage(tableErrors[1], formData[1])
   }
 
   else{
+    clearErrorMessages(formData[1])
     count++;
   }
 
   // EMAIL VALIDATION
 
+  const regexEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+ 
+
   if(!email.value){
-    error3.textContent= "Veuillez entre votre e-mail";
+    createErrorMessage(tableErrors[3], formData[2])
+  }
+
+  else if(!email.value.match(regexEmail)){
+    createErrorMessage(tableErrors[4], formData[2])
   }
 
   else{
+    clearErrorMessages(formData[2])
     count++;
   }
 
+
   // BIRTHDAY DATE VALIDATION
+  const regexBirth = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
 
   if(!birth.value){
-      error4.textContent= "Veuillez entrer votre date de naissance";
+    createErrorMessage(tableErrors[5], formData[3])
 
   }
 
+  else if(!birth.value.match(regexBirth)){
+    createErrorMessage(tableErrors[6], formData[3])
+  }
+
   else{
+    clearErrorMessages(formData[3])
     count++;
   }
 
   // NUMBER OF TOURNAMENTS VALIDATION
   
   if(!quantity.value){
-      error5.textContent = "Veuillez entrer un nombre";
+    createErrorMessage(tableErrors[7], formData[4])
   }
 
   else{
+    clearErrorMessages(formData[4])
     count++;
   }
 
@@ -146,70 +206,44 @@ form.addEventListener("submit", (e)=>{
   // CITY VALIDATION
 
   if(!newYork.checked && !seatle.checked && !chicago.checked && !boston.checked && !portland.checked ) {
-    error6.textContent = "Veuillez sélèctionner une ville";
+    createErrorMessage(tableErrors[8], formData[5])
   }
 
   else{
+    clearErrorMessages(formData[5])
     count++;
   }
 
   // CONDITIONS VALIDATION
 
   if(!conditions.checked) {
-    error7.textContent = "Veuillez accepter les conditions d'utilisation";
+    createErrorMessage(tableErrors[9], formData[6])
   }
 
   else{
+    clearErrorMessages(formData[6])
     count++;
   }
 
   // DON'T APPLY THE PREVENT DEFAULT IF ALL PREVIOUS CONDITIONS ARE VALIDATED
 
   if(count===7){
-   
-  // Replace the submit button text
-    const submitBtn = document.getElementsByClassName("btn-submit")[0]
-    submitBtn.value = "Fermer"
-
- 
-  
-
-  // Insert the validation text
-    const confirm = document.createElement("p")
-    confirm.textContent = "Merci d'avoir soumis vos détails d'enregistrement"
-    form.appendChild(confirm)
-
-  // Put the validation text before the button
-    form.insertBefore(confirm, submitBtn)
-
-  //delete inputs 
-    const inputs = document.querySelectorAll(".formData")
-    const label = document.getElementsByClassName("text-label")[0]
-
-    inputs[0].style.display = "none"
-    inputs[1].style.display = "none"
-    inputs[2].style.display = "none"
-    inputs[3].style.display = "none"
-    inputs[4].style.display = "none"
-    inputs[5].style.display = "none"
-    inputs[6].style.display = "none"
-    label.style.display = "none"
-
-  // Keep the height of the modal and ajust elements inside
-    const content = document.getElementsByClassName("content")[0]
-    content.style.height = "605.750px"
-    confirm.style.height = "496px"
-    confirm.style.textAlign = "center"
-    confirm.style.paddingTop = "100px"
-
-    
-
- // close modal if user click on "close" button
-  submitBtn.addEventListener('click', closeModal);
+  validation.style.display = "block";
+  closeModal();
   }
+
 })
 
 
+
+
+ //////////////// CLOSE THE VALIDATION MESSAGE SECTION 
+
+ function closeValidation() {
+  validation.style.display = 'none';
+}
+closeConfirmation.addEventListener('click', closeValidation);
+spanConfirmation[0].addEventListener('click', closeValidation);
 
   
 
