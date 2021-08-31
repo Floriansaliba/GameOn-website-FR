@@ -103,6 +103,10 @@ function clearErrorMessages(parentNode){
 
 }
 
+// Inputs table 
+let inputsTable =[first,last,email,birth,quantity]
+let checkBoxesTable =[newYork, seatle, chicago, boston, portland, conditions, informed]
+
 
 
 
@@ -230,11 +234,17 @@ form.addEventListener("submit", (e)=>{
   if(count===7){
   validation.style.display = "block";
   closeModal();
+
+  for (let i=0; i< inputsTable.length; i++){
+    inputsTable[i].value = "";
+  }
+
+  for (let i=0; i< checkBoxesTable.length; i++){
+    checkBoxesTable[i].checked = false;
+  }
   }
 
 })
-
-
 
 
  //////////////// CLOSE THE VALIDATION MESSAGE SECTION 
